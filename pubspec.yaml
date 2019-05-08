@@ -24,6 +24,9 @@ dependencies:
   snaplist: any
   rxdart: any
   flutter_bloc: any
+  equatable: any
+  path_provider: any
+  sembast: any
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
