@@ -1,5 +1,5 @@
 name: daily
-description: A new Flutter project.
+description: Application of Daily Management and Records
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -20,13 +20,19 @@ dependencies:
   flutter:
     sdk: flutter
   json_annotation: any
-  flutter_local_notifications: any
-  snaplist: any
   rxdart: any
   flutter_bloc: any
   equatable: any
   path_provider: any
   sembast: any
+
+  # Local Host Device plugin
+  flutter_local_notifications: any
+
+  # unstable Packages List:
+  snaplist: any
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
@@ -52,6 +58,11 @@ flutter:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
+  assets:
+    - assets/image_01.png
+    - assets/image_02.jpg
+    - assets/image_03.jpg
+    - assets/image_04.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
@@ -78,8 +89,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
-  assets:
-    - assets/image_01.png
-    - assets/image_02.jpg
-    - assets/image_03.jpg
-    - assets/image_04.jpg
