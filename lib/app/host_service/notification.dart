@@ -1,8 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:meta/meta.dart';
 
-class PluginManager {}
-
 class NotificationsPluginProvider {
   static NotificationsPluginProvider init({
     @required String iconNameOfAndroid,
