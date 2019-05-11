@@ -1,3 +1,6 @@
+# Functional Description
+- [项目描述](doc/ProjectDescription.md)
+
 # TODO (优先级从高到低):
 ---
 - 及时的文档更新
