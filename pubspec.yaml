@@ -19,11 +19,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   json_annotation: any
-  rxdart: any
-  flutter_bloc: any
+
   equatable: any
+
   path_provider: any
+
   sembast: any
 
   # Local Host Device plugin
@@ -31,6 +33,12 @@ dependencies:
 
   # unstable Packages List:
   snaplist: any
+
+  provider: any
+
+  rxdart: any
+
+  flutter_bloc: any
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,7 +48,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   build_runner: any
+
   json_serializable: any
 
 # For information on the generic Dart part of this file, see the
