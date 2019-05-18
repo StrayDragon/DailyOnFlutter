@@ -16,7 +16,7 @@ void main() {
 
   group(
     "连接Sembast数据库与基本操作",
-        () {
+				() {
       // NOTE: Step 2. 连接(打开)目标数据库
       setUp(() async => db = await dbFactory.openDatabase(dbPath));
 
@@ -25,7 +25,7 @@ void main() {
       // NOTE: Step 3. 该咋用就咋用...
       group(
         "最基本功能(读/写数据)",
-            () {
+						() {
           test("写/读 String", () async {
             await db.put('Simple application', 'title');
             String title = await db.get('title') as String;
@@ -49,10 +49,10 @@ void main() {
 
       group(
         "事务功能",
-            () {
+						() {
           test(
             "写/读 一堆String",
-                () async {
+								() async {
               await db.transaction((txn) async {
                 await txn.put('value1', 'value1');
                 await txn.put('value2', 'value2');
@@ -72,7 +72,7 @@ void main() {
 
       group(
         '新的store API',
-            () {
+						() {
           test('写/读 String', () async {
             const expectedUrl = 'my_url';
             const expectedUsername = 'my_username';
