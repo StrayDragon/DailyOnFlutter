@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart' hide Finder;
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_memory.dart';
-// import 'package:sembast/sembast_io.dart'; // #tag1
+import 'package:sembast/utils/sembast_import_export.dart';
 
 void main() {
   // 数据库初始化与连接
@@ -14,7 +16,7 @@ void main() {
 
   group(
     "连接Sembast数据库与基本操作",
-    () {
+        () {
       // NOTE: Step 2. 连接(打开)目标数据库
       setUp(() async => db = await dbFactory.openDatabase(dbPath));
 
@@ -23,7 +25,7 @@ void main() {
       // NOTE: Step 3. 该咋用就咋用...
       group(
         "最基本功能(读/写数据)",
-        () {
+            () {
           test("写/读 String", () async {
             await db.put('Simple application', 'title');
             String title = await db.get('title') as String;
@@ -47,10 +49,10 @@ void main() {
 
       group(
         "事务功能",
-        () {
+            () {
           test(
             "写/读 一堆String",
-            () async {
+                () async {
               await db.transaction((txn) async {
                 await txn.put('value1', 'value1');
                 await txn.put('value2', 'value2');
@@ -70,7 +72,7 @@ void main() {
 
       group(
         '新的store API',
-        () {
+            () {
           test('写/读 String', () async {
             const expectedUrl = 'my_url';
             const expectedUsername = 'my_username';
@@ -141,15 +143,17 @@ void main() {
   }, skip: true);
 
   group('导入/导出Sembast数据库', () {
-    setUp(() async => db = await dbFactory.openDatabase(dbPath));
-    tearDown(() async => await db.clear());
+    setUp(() async => await dbFactory.openDatabase(dbPath));
+    tearDown(() async {
+      await db.clear();
+      await db.close();
+    });
 
-    test('示例数据', () async {
+    test('导入', () async {
+//      db = await dbFactory.openDatabase(dbPath);
       // Our shop store sample data
       var store = intMapStoreFactory.store('shop');
-
-      int lampKey;
-      int chairKey;
+      int lampKey, chairKey;
       await db.transaction((txn) async {
         // Add 2 records
         lampKey = await store.add(txn, {'name': 'Lamp', 'price': 10});
@@ -159,11 +163,50 @@ void main() {
       // update the price of the lamp record
       await store.record(lampKey).update(db, {'price': 12});
 
-      // var content = await store.find(db);
-
+      var content = await exportDatabase(db);
       // Save as text
-      // var saved = jsonEncode(content);
-      // print(saved);
-    }, skip: true);
+      var saved = jsonEncode(content);
+
+      print(saved);
+//      await db.clear();
+    });
+
+    test('导出', () async {
+      String saved = r"""{
+  "sembast_export": 1,
+  "version": 1,
+  "stores": [
+    {
+      "name": "shop",
+      "keys": [
+        1,
+        2
+      ],
+      "values": [
+        {
+          "name": "Lamp",
+          "price": 12
+        },
+        {
+          "name": "Chair",
+          "price": 15
+        }
+      ]
+    }
+  ]
+}
+      """;
+      // Import the data
+      var map = jsonDecode(saved) as Map;
+      var importedDb = await importDatabase(map, dbFactory, 'imported.db');
+//      db = await dbFactory.openDatabase(dbPath);
+
+      var store = intMapStoreFactory.store('shop');
+      int lampKey = 1;
+      // Check the lamp price
+      expect((await store.record(lampKey).get(importedDb))['price'], 12);
+
+//      await db.clear();
+    });
   });
 }

@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
 
-main() {
+void main() {
   group('CounterBloc', () {
     CounterBloc counterBloc;
     setUp(() => counterBloc = CounterBloc());
@@ -41,9 +41,7 @@ class CounterBloc extends Bloc<CounterEvent, int> {
   int get initialState => 0;
 
   @override
-  Stream<int> mapEventToState(
-    CounterEvent event,
-  ) async* {
+  Stream<int> mapEventToState(CounterEvent event,) async* {
     switch (event) {
       case CounterEvent.increment:
         yield currentState + 1;
