@@ -33,14 +33,13 @@ dependencies:
   # Local Host Device plugin: https://github.com/MaikuB/flutter_local_notifications
   flutter_local_notifications: any
 
-  # unstable Packages List:
-  snaplist: any
-
   provider: any
 
   rxdart: any
 
   flutter_bloc: any
+
+  # UI Components Packages:
 
 
   # The following adds the Cupertino Icons font to your application.
