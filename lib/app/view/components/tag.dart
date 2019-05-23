@@ -1,81 +1,69 @@
 import 'package:flutter/material.dart';
 
-enum TagLevels {
-  urgent,
-  important,
-  easy,
-  medium,
-  hard,
-}
+class TagLevels {
+  String name;
+  Color color;
 
-class _Level {
-  final TagLevels level;
+  TagLevels({this.name, this.color});
 
-  _Level(this.level);
+  static get urgent => TagLevels(name: '急切', color: Colors.red);
 
-  String get title {
-    String _title;
+  static get important => TagLevels(name: '重要', color: Colors.yellow);
 
-    switch (level) {
-      case TagLevels.urgent:
-        _title = '急切';
-        break;
-      case TagLevels.important:
-        _title = '重要';
-        break;
-      case TagLevels.easy:
-        _title = '简单';
-        break;
-      case TagLevels.medium:
-        _title = '中等';
-        break;
-      case TagLevels.hard:
-        _title = '困难';
-        break;
-    }
+  static get easy => TagLevels(name: '简单', color: Colors.greenAccent);
 
-    return _title;
-  }
+  static get medium => TagLevels(name: '中等', color: Colors.amber);
 
-  Color get color {
-    Color _color;
-    switch (level) {
-      case TagLevels.urgent:
-        _color = Colors.red;
-        break;
-      case TagLevels.important:
-        _color = Colors.yellow;
-        break;
-      case TagLevels.easy:
-        _color = Colors.greenAccent;
-        break;
-      case TagLevels.medium:
-        _color = Colors.amber;
-        break;
-      case TagLevels.hard:
-        _color = Colors.redAccent;
-        break;
-    }
-    return _color;
-  }
+  static get hard => TagLevels(name: '困难', color: Colors.redAccent);
 }
 
 // ignore: must_be_immutable
 class Tag extends StatelessWidget {
-  _Level _level;
+  VoidCallback onPressed;
+  TagLevels level;
 
-  Tag({Key key, TagLevels level}) : super(key: key) {
-    _level = _Level(level);
-  }
+  Tag({Key key, this.level, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
+    return ActionChip(
+      onPressed: onPressed,
       label: Text(
-        _level.title,
+        level.name,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      backgroundColor: _level.color,
+      backgroundColor: level.color,
+    );
+  }
+}
+
+class TagExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: <Widget>[
+        Tag(
+          level: TagLevels.easy,
+          onPressed: () => print("Tapped Tag(TagLevels.easy)"),
+        ),
+        Tag(
+          level: TagLevels.medium,
+          onPressed: () => print("Tapped Tag(TagLevels.medium)"),
+        ),
+        Tag(
+          level: TagLevels.hard,
+          onPressed: () => print("Tapped Tag(TagLevels.hard)"),
+        ),
+        Tag(
+          level: TagLevels.important,
+          onPressed: () => print("Tapped Tag(TagLevels.important)"),
+        ),
+        Tag(
+          level: TagLevels.urgent,
+          onPressed: () => print("Tapped Tag(TagLevels.urgent)"),
+        ),
+      ],
     );
   }
 }
