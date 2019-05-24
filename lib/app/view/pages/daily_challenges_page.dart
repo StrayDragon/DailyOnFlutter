@@ -1,4 +1,5 @@
-import 'package:daily/app/view/components/stacking_cards_view.dart';
+import 'package:daily/app/view/components/add_challenge_dialog.dart';
+import 'package:daily/app/view/components/stacking_cards.dart';
 import 'package:daily/app/view/components/tag.dart';
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
@@ -15,6 +16,7 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Daily v0.1'),
         centerTitle: true,
@@ -38,7 +40,7 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              StackingCardsView(),
+              StackingCards(),
               TagExample(),
             ],
           ),
@@ -48,7 +50,24 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         elevation: 12.0,
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (_) => AddChallengeDialog(),
+            barrierDismissible: true,
+          );
+//          showDialog(
+//            context: context,
+//            builder: (_) => SingleChildScrollView(
+//                  child: AddChallengeDialog(),
+//                ),
+//            barrierDismissible: true,
+//          );
+//          Navigator.of(context).push(MaterialPageRoute(
+//            builder: (BuildContext context) => AddChallengeDialog(),
+//            fullscreenDialog: true,
+//          ));
+        },
       ),
     );
   }
@@ -61,8 +80,8 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
         upperBoundValue: AnimationControllerValue(percentage: 0.9),
         springDescription: SpringDescription.withDampingRatio(
           mass: 1,
-          stiffness: Stiffness.HIGH,
-          ratio: DampingRatio.HIGH_BOUNCY,
+          stiffness: Stiffness.LOW,
+          ratio: DampingRatio.MEDIUM_BOUNCY,
         ),
         duration: Duration(milliseconds: 300));
     super.initState();
