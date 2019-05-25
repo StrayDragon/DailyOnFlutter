@@ -1,9 +1,9 @@
 import 'package:daily/app/view/components/add_challenge_dialog.dart'
-		show AddChallengeDialog;
+    show AddChallengeDialog;
 import 'package:daily/app/view/components/functional_widgets.dart'
-		show HeroDialogRoute;
+    show HeroDialogRoute;
 import 'package:daily/app/view/components/stacking_cards.dart'
-		show StackingCards;
+    show StackingCards;
 import 'package:daily/app/view/components/tag.dart' show TagExample;
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
@@ -21,7 +21,7 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
   Widget build(BuildContext context) {
     return Scaffold(
 //      resizeToAvoidBottomPadding: false,
-			resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Daily v0.1'),
         centerTitle: true,
@@ -52,25 +52,25 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
         ),
         animationController: _rubberController,
       ),
-			floatingActionButton: Padding(
-				padding: const EdgeInsets.only(
-					right: 10.0,
-					bottom: 30.0,
-				),
-				child: FloatingActionButton(
-					child: Icon(Icons.add),
-					elevation: 12.0,
-					heroTag: AddChallengeDialog.heroTag,
-					onPressed: () {
-						Navigator.of(context).push(
-							HeroDialogRoute(
-								builder: (BuildContext context) {
-									return AddChallengeDialog();
-								},
-							),
-						);
-					},
-				),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(
+          right: 10.0,
+          bottom: 30.0,
+        ),
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+          elevation: 12.0,
+          heroTag: AddChallengeDialog.heroTag,
+          onPressed: () {
+            Navigator.of(context).push(
+              HeroDialogRoute(
+                builder: (BuildContext context) {
+                  return AddChallengeDialog();
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
