@@ -16,6 +16,14 @@
 
 ### `功能模块`
 
+> '挑战' 功能模块
+> - [ ] 界面设计 (基础UI/UX)
+> - [ ] 原型设计 (基础架构)
+>   - [ ] 数据层设计 (Data Layer)
+>   - [ ] 逻辑层设计 (Business Logical Layer)
+>   - [ ] 表示层设计 (Presentation Layer)
+> - [ ] (*.ics)ICalendar格式文件生成器(generator)和解析器(parser), 用于将每日的时间总结至日历, 方便周,月,年级别的总结
+
 - `工作流` (WorkFlow) : 管理任务`??`
   - `任务板` 
     - `任务` 
