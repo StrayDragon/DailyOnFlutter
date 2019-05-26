@@ -2,9 +2,7 @@ import 'package:daily/app/view/components/add_challenge_dialog.dart'
     show AddChallengeDialog;
 import 'package:daily/app/view/components/functional_widgets.dart'
     show HeroDialogRoute;
-import 'package:daily/app/view/components/stacking_cards.dart'
-    show StackingCards;
-import 'package:daily/app/view/components/tag.dart' show TagExample;
+import 'package:daily/app/view/components/timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
 
@@ -41,19 +39,12 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
           decoration: BoxDecoration(
             color: Colors.cyan[100],
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              StackingCards(),
-              TagExample(),
-            ],
-          ),
+          child: ChallengesTimeline(),
         ),
         animationController: _rubberController,
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(
+        padding: EdgeInsets.only(
           right: 10.0,
           bottom: 30.0,
         ),
