@@ -16,8 +16,8 @@ class _AddChallengeDialogState extends State<AddChallengeDialog> {
       child: SimpleDialog(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(32.0),
-            )),
+							Radius.circular(32.0),
+						)),
         children: <Widget>[
           Hero(
             tag: AddChallengeDialog.heroTag,

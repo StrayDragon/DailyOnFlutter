@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app/view/pages/daily_challenges_page.dart';
+import 'app/view/pages.dart' show DailyChallengesPage;
 
 void main() => runApp(MyApp());
 
