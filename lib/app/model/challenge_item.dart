@@ -1,25 +1,43 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:daily/app/utils.dart';
+import 'package:equatable/equatable.dart';
 
-part 'challenge_item.g.dart';
+import 'entities/challenge_item_entity.dart';
 
-@JsonSerializable()
-class ChallengeItem {
-  final String title;
-  final int duration;
-  final bool isDone;
-  final int loopCount;
+class ChallengeItem extends Equatable {
+  int id;
+
+  String title;
+
+  bool isFinished;
+
+  DateTime startTime;
+
+  DateTime limitedTime;
+
+  DateTime endTime;
 
   ChallengeItem({
+    this.id,
     this.title,
-    this.duration,
-    this.isDone,
-    this.loopCount,
+    this.isFinished,
+    this.startTime,
+    this.limitedTime,
+    this.endTime,
   });
 
-  //反序列化
-  factory ChallengeItem.fromJson(Map<String, dynamic> json) =>
-      _$ChallengeItemFromJson(json);
+  factory ChallengeItem.fromEntity(ChallengeItemEntity entity) {
+    return ChallengeItem(
+      id: entity.id,
+      title: entity.title,
+      isFinished: dbTypify(entity.isFinishedFlag),
+      limitedTime: dbTypify(entity.limitedTimeStamp),
+      startTime: dbTypify(entity.startTimeStamp),
+      endTime: dbTypify(entity.endTimeStamp),
+    );
+  }
 
-  //序列化
-  Map<String, dynamic> toJson() => _$ChallengeItemToJson(this);
+  @override
+  String toString() {
+    return 'ChallengeItem{id: $id, title: $title, isFinished: $isFinished, startTime: $startTime, limitedTime: $limitedTime, endTime: $endTime}';
+  }
 }
