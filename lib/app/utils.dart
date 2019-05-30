@@ -1,55 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-final List<String> _hansWeekdays = [
-	"",
-	"星期一",
-	"星期二",
-	"星期三",
-	"星期四",
-	"星期五",
-	"星期六",
-	"星期日",
+final List<String> _zhCnWeekdays = [
+  "",
+  "星期一",
+  "星期二",
+  "星期三",
+  "星期四",
+  "星期五",
+  "星期六",
+  "星期日",
 ];
 
-// ignore: unused_element
-final List<String> _hansShortWeekday = [
-	"",
-	"周一",
-	"周二",
-	"周三",
-	"周四",
-	"周五",
-	"周六",
-	"周日",
+final List<String> _zhCnShortWeekday = [
+  "",
+  "周一",
+  "周二",
+  "周三",
+  "周四",
+  "周五",
+  "周六",
+  "周日",
 ];
 
-class DateUtil {
-	static List<String> parseDateTimeInfo(int millisecondsTimeStampSinceEpoch,
-			{bool showYear = true,
-				bool showMonth = true,
-				bool showDay = true,
-				bool showWeekDay = true}) {
-		var that =
-		DateTime.fromMillisecondsSinceEpoch(millisecondsTimeStampSinceEpoch);
+@Deprecated("Use JsonKeys.boolean instead")
+const JsonKey boolJsonKey =
+    JsonKey(fromJson: BoolUtil.fromJson, toJson: BoolUtil.toJson);
 
-		List<String> result;
-		if (showYear) result.add(that.year.toString());
-		if (showMonth) result.add(that.month.toString());
-		if (showDay) result.add(that.day.toString());
-		if (showWeekDay) result.add(_hansWeekdays[that.weekday]);
+@Deprecated("Use JsonKeys.color instead")
+const JsonKey colorJsonKey =
+    JsonKey(fromJson: ColorUtil.fromJson, toJson: ColorUtil.toJson);
 
-		return result;
-	}
+@Deprecated("Use JsonKeys.dateTime instead")
+const JsonKey dateTimeJsonKey =
+    JsonKey(fromJson: DateTimeUtil.fromJson, toJson: DateTimeUtil.toJson);
+
+class JsonKeys {
+  static const JsonKey safetyIdName = JsonKey(name: '_id');
+
+  static const JsonKey boolean =
+      JsonKey(fromJson: BoolUtil.fromJson, toJson: BoolUtil.toJson);
+
+  static const JsonKey color =
+      JsonKey(fromJson: ColorUtil.fromJson, toJson: ColorUtil.toJson);
+
+  static const JsonKey dateTime =
+      JsonKey(fromJson: DateTimeUtil.fromJson, toJson: DateTimeUtil.toJson);
 }
 
-dynamic dbTypify(dynamic object) {
-	if (object is Color) {
-		return object.value;
-	} else if (object is DateTime) {
-		return object.millisecondsSinceEpoch;
-	} else if (object is bool) {
-		return object ? 1 : 0;
-	} else {
-		return object;
-	}
+class DateTimeUtil {
+  static final DateFormat defaultFormatter = new DateFormat('Hm', 'zh_CN');
+
+  static toHM(DateTime date) => DateTimeUtil.defaultFormatter.format(date);
+
+  static DateTime fromJson(int millisecondsSinceEpochTimeStamp) {
+    return DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpochTimeStamp);
+  }
+
+  static int toJson(DateTime time) => time.millisecondsSinceEpoch;
+}
+
+class ColorUtil {
+  static Color fromJson(int colorValue) => Color(colorValue);
+
+  static int toJson(Color color) => color.value;
+}
+
+class BoolUtil {
+  static bool fromJson(int flagValue) => flagValue == 1 ? true : false;
+
+  static int toJson(bool flag) => flag ? 1 : 0;
 }
