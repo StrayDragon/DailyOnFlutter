@@ -1,7 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'package:equatable/equatable.dart';
-
 import 'package:daily/app/utils.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'challenge_item.g.dart';
 
@@ -16,7 +14,10 @@ class ChallengeItem {
   bool isFinished;
 
   @JsonKeys.dateTime
-  DateTime startTime, limitedTime, endTime;
+  DateTime startTime, endTime;
+
+  @JsonKeys.duration
+  Duration limitedTime;
 
   ChallengeItem({
     this.id,
@@ -32,8 +33,10 @@ class ChallengeItem {
 
   Map<String, dynamic> toJson() => _$ChallengeItemToJson(this);
 
+  String toDebugString() =>
+      'ChallengeItem{id: $id, title: $title, isFinished: $isFinished, startTime: $startTime, limitedTime: $limitedTime, endTime: $endTime}';
+
   @override
-  String toString() {
-    return 'ChallengeItem{id: $id, title: $title, isFinished: $isFinished, startTime: $startTime, limitedTime: $limitedTime, endTime: $endTime}';
-  }
+  String toString() =>
+      'ChallengeItem{id: $id, title: $title, isFinished: $isFinished}';
 }

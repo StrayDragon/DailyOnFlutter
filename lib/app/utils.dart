@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+// ignore: unused_element
 final List<String> _zhCnWeekdays = [
   "",
   "星期一",
@@ -13,6 +14,7 @@ final List<String> _zhCnWeekdays = [
   "星期日",
 ];
 
+// ignore: unused_element
 final List<String> _zhCnShortWeekday = [
   "",
   "周一",
@@ -47,6 +49,17 @@ class JsonKeys {
 
   static const JsonKey dateTime =
       JsonKey(fromJson: DateTimeUtil.fromJson, toJson: DateTimeUtil.toJson);
+
+	static const JsonKey duration =
+	JsonKey(fromJson: DurationUtil.fromJson, toJson: DurationUtil.toJson);
+}
+
+class DurationUtil {
+	static Duration fromJson(int millisecondsSinceEpochTimeStamp) {
+		return Duration(milliseconds: millisecondsSinceEpochTimeStamp);
+	}
+
+	static int toJson(Duration time) => time.inMilliseconds;
 }
 
 class DateTimeUtil {

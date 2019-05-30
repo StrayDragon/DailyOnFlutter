@@ -18,7 +18,7 @@ ChallengeItem _$ChallengeItemFromJson(Map<String, dynamic> json) {
           : DateTimeUtil.fromJson(json['startTime'] as int),
       limitedTime: json['limitedTime'] == null
           ? null
-          : DateTimeUtil.fromJson(json['limitedTime'] as int),
+          : DurationUtil.fromJson(json['limitedTime'] as int),
       endTime: json['endTime'] == null
           ? null
           : DateTimeUtil.fromJson(json['endTime'] as int));
@@ -34,10 +34,10 @@ Map<String, dynamic> _$ChallengeItemToJson(ChallengeItem instance) =>
       'startTime': instance.startTime == null
           ? null
           : DateTimeUtil.toJson(instance.startTime),
-      'limitedTime': instance.limitedTime == null
-          ? null
-          : DateTimeUtil.toJson(instance.limitedTime),
       'endTime': instance.endTime == null
           ? null
-          : DateTimeUtil.toJson(instance.endTime)
+          : DateTimeUtil.toJson(instance.endTime),
+      'limitedTime': instance.limitedTime == null
+          ? null
+          : DurationUtil.toJson(instance.limitedTime)
     };

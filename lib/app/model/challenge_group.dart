@@ -1,8 +1,6 @@
+import 'package:daily/app/utils.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:equatable/equatable.dart';
-
-import 'package:daily/app/utils.dart';
 
 import 'challenge_item.dart';
 
@@ -10,41 +8,48 @@ part 'challenge_group.g.dart';
 
 @JsonSerializable()
 class ChallengeGroup {
-  @JsonKeys.safetyIdName
-  int id;
+	@JsonKeys.safetyIdName
+	int id;
 
-  String title, tags;
+	String title;
 
-  @JsonKeys.boolean
-  bool isFinished;
+	List<String> tags;
 
-  @JsonKeys.color
-  Color color;
+	@JsonKeys.boolean
+	bool isFinished;
 
-  @JsonKeys.dateTime
-  DateTime startTime, endTime, limitedTime;
+	@JsonKeys.color
+	Color color;
 
-  List<ChallengeItem> challengeItems;
+	@JsonKeys.dateTime
+	DateTime startTime, endTime;
 
-  ChallengeGroup({
-    this.id,
-    this.title,
-    this.tags,
-    this.color,
-    this.isFinished,
-    this.startTime,
-    this.endTime,
-    this.limitedTime,
-    this.challengeItems,
-  });
+	@JsonKeys.duration
+	Duration limitedTime;
 
-  factory ChallengeGroup.fromJson(Map<String, dynamic> jsonObj) =>
-      _$ChallengeGroupFromJson(jsonObj);
+	List<ChallengeItem> challengeItems;
 
-  Map<String, dynamic> toJson() => _$ChallengeGroupToJson(this);
+	ChallengeGroup({
+		this.id,
+		this.title,
+		this.tags,
+		this.color,
+		this.isFinished,
+		this.startTime,
+		this.endTime,
+		this.limitedTime,
+		this.challengeItems,
+	});
 
-  @override
-  String toString() {
-    return 'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished, startTime: $startTime, endTime: $endTime, limitedTime: $limitedTime, ChallengeItemIds: ${challengeItems.map((e) => e.id).toList()}}';
-  }
+	factory ChallengeGroup.fromJson(Map<String, dynamic> jsonObj) =>
+			_$ChallengeGroupFromJson(jsonObj);
+
+	Map<String, dynamic> toJson() => _$ChallengeGroupToJson(this);
+
+	String toDebugString() =>
+			'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished, color: $color, startTime: $startTime, endTime: $endTime, limitedTime: $limitedTime, challengeItems: $challengeItems}';
+
+	@override
+	String toString() =>
+			'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished, challengeItems: $challengeItems';
 }
