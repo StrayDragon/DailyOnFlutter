@@ -20,6 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: any
+
   json_annotation: any
 
   equatable: any
