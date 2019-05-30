@@ -1,23 +1,28 @@
-import 'package:daily/app/utils.dart';
+import 'package:flutter/widgets.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 
-import 'challenge_item.dart';
-import 'entities/challenge_group_entity.dart';
+import 'package:daily/app/utils.dart';
 
-class ChallengeGroup extends Equatable {
+import 'challenge_item.dart';
+
+part 'challenge_group.g.dart';
+
+@JsonSerializable()
+class ChallengeGroup {
+  @JsonKeys.safetyIdName
   int id;
 
-  String title;
+  String title, tags;
 
-  String tags;
-
+  @JsonKeys.boolean
   bool isFinished;
 
-  DateTime startTime;
+  @JsonKeys.color
+  Color color;
 
-  DateTime endTime;
-
-  DateTime limitedTime;
+  @JsonKeys.dateTime
+  DateTime startTime, endTime, limitedTime;
 
   List<ChallengeItem> challengeItems;
 
@@ -25,6 +30,7 @@ class ChallengeGroup extends Equatable {
     this.id,
     this.title,
     this.tags,
+    this.color,
     this.isFinished,
     this.startTime,
     this.endTime,
@@ -32,17 +38,10 @@ class ChallengeGroup extends Equatable {
     this.challengeItems,
   });
 
-  factory ChallengeGroup.fromEntity(ChallengeGroupEntity entity) {
-    return ChallengeGroup(
-      id: entity.id,
-      title: entity.title,
-      tags: entity.tags,
-      isFinished: dbTypify(entity.isFinished == 1),
-      limitedTime: dbTypify(entity.limitedTimeStamp),
-      startTime: dbTypify(entity.startTimeStamp),
-      endTime: dbTypify(entity.endTimeStamp),
-    );
-  }
+  factory ChallengeGroup.fromJson(Map<String, dynamic> jsonObj) =>
+      _$ChallengeGroupFromJson(jsonObj);
+
+  Map<String, dynamic> toJson() => _$ChallengeGroupToJson(this);
 
   @override
   String toString() {

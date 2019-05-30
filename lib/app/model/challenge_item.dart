@@ -1,20 +1,22 @@
-import 'package:daily/app/utils.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 
-import 'entities/challenge_item_entity.dart';
+import 'package:daily/app/utils.dart';
 
-class ChallengeItem extends Equatable {
+part 'challenge_item.g.dart';
+
+@JsonSerializable()
+class ChallengeItem {
+  @JsonKeys.safetyIdName
   int id;
 
   String title;
 
+  @JsonKeys.boolean
   bool isFinished;
 
-  DateTime startTime;
-
-  DateTime limitedTime;
-
-  DateTime endTime;
+  @JsonKeys.dateTime
+  DateTime startTime, limitedTime, endTime;
 
   ChallengeItem({
     this.id,
@@ -25,16 +27,10 @@ class ChallengeItem extends Equatable {
     this.endTime,
   });
 
-  factory ChallengeItem.fromEntity(ChallengeItemEntity entity) {
-    return ChallengeItem(
-      id: entity.id,
-      title: entity.title,
-      isFinished: dbTypify(entity.isFinishedFlag),
-      limitedTime: dbTypify(entity.limitedTimeStamp),
-      startTime: dbTypify(entity.startTimeStamp),
-      endTime: dbTypify(entity.endTimeStamp),
-    );
-  }
+  factory ChallengeItem.fromJson(Map<String, dynamic> jsonObj) =>
+      _$ChallengeItemFromJson(jsonObj);
+
+  Map<String, dynamic> toJson() => _$ChallengeItemToJson(this);
 
   @override
   String toString() {
