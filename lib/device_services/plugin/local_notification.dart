@@ -1,16 +1,35 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:meta/meta.dart';
 
+typedef Future<dynamic> OnSelectCallback(String payload);
+
 class LocalNotificationPlugin {
-  static Future<LocalNotificationPlugin> defaultInitialize() async {
-    final settingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    final settingsIOS = IOSInitializationSettings(
-        onDidReceiveLocalNotification: (id, title, body, payload) {});
+  static Future<LocalNotificationPlugin> defaultInitialize(
+      {bool isAndroid = true,
+      bool isIOS = true,
+      OnSelectCallback onSelect}) async {
+    assert(isAndroid || isIOS);
+
+    final settingsAndroid = isAndroid
+        ? (AndroidInitializationSettings('@mipmap/ic_launcher'))
+        : null;
+
+    //NOTE: I don't know what the `onDidReceiveLocalNotification` mean... 23333
+    final settingsIOS = isIOS
+        ? (IOSInitializationSettings(
+            onDidReceiveLocalNotification: (id, title, body, payload) {}))
+        : null;
+
     var plugin = LocalNotificationPlugin();
+
     await plugin._notifications.initialize(
-        InitializationSettings(settingsAndroid, settingsIOS),
-        onSelectNotification: (_) {});
+      InitializationSettings(
+        settingsAndroid,
+        settingsIOS,
+      ),
+      onSelectNotification: onSelect ?? (_) {},
+    );
+
     return plugin;
   }
 
