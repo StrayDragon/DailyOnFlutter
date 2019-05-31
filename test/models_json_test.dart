@@ -1,6 +1,7 @@
 import 'dart:convert' show json;
 
 import 'package:daily/app/model/models.dart' show ChallengeItem, ChallengeGroup;
+import 'package:daily/app/util/existing_type.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'assets/json_serializtion_test_asset.dart';
@@ -12,7 +13,7 @@ void main() {
           ChallengeItem.fromJson(json.decode(challengeItemSampleJson));
 
       expect(challengeItem.id, 1);
-      expect(challengeItem.startTime, null);
+      expect(challengeItem.startTime, DateTimeUtil.none);
       expect(challengeItem.limitedTime.inMilliseconds, 259200000);
       expect(challengeItem.isFinished, false);
     });

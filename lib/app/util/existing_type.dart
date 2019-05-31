@@ -3,19 +3,22 @@ import 'package:intl/intl.dart';
 
 class DurationUtil {
   static Duration fromJson(int millisecondsSinceEpochTimeStamp) {
-    return Duration(milliseconds: millisecondsSinceEpochTimeStamp);
+    return Duration(milliseconds: millisecondsSinceEpochTimeStamp ?? 0);
   }
 
   static int toJson(Duration time) => time.inMilliseconds;
 }
 
 class DateTimeUtil {
+  static final none = DateTime.fromMillisecondsSinceEpoch(0);
+
   static final DateFormat defaultFormatter = new DateFormat('Hm', 'zh_CN');
 
   static toHM(DateTime date) => DateTimeUtil.defaultFormatter.format(date);
 
   static DateTime fromJson(int millisecondsSinceEpochTimeStamp) {
-    return DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpochTimeStamp);
+    return DateTime.fromMillisecondsSinceEpoch(
+        millisecondsSinceEpochTimeStamp ?? 0);
   }
 
   static int toJson(DateTime time) => time.millisecondsSinceEpoch;
