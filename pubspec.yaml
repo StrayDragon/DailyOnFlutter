@@ -28,6 +28,8 @@ dependencies:
 
   path_provider: any
 
+  shared_preferences: any
+
   xxtea: any
 
   sembast: any
