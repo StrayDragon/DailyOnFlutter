@@ -1,5 +1,6 @@
-import 'package:daily/app/utils.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:daily/app/util/utils.dart';
 
 part 'challenge_item.g.dart';
 
@@ -10,7 +11,7 @@ class ChallengeItem {
 
   String title;
 
-  @JsonKeys.boolean
+  @JsonKeys.bool
   bool isFinished;
 
   @JsonKeys.dateTime

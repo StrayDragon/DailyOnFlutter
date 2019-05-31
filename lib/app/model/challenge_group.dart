@@ -1,7 +1,7 @@
-import 'package:daily/app/utils.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:daily/app/util/utils.dart';
 import 'challenge_item.dart';
 
 part 'challenge_group.g.dart';
