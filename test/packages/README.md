@@ -1,5 +1,8 @@
 # 该文件夹下面为所有扩展相应基本用法
 - 请在学习前运行测试用例,确保在指定版本下可用,然后学习相应调用方法把!
 ```bash
-$ flutter test test/_learning
+$ flutter test test/packages/*.dart
 ```
+
+- 测试代码来源大部分为该库仓库(地址详见pubspec.yaml)给出的测试用例,一部分为自己照着文档编写.
+  - FIXME:公开仓库后后的两个选择: License放置 或 移除
