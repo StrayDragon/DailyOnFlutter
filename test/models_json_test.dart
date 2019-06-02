@@ -13,6 +13,7 @@ void main() {
           ChallengeItem.fromJson(json.decode(challengeItemSampleJson));
 
       expect(challengeItem.id, 1);
+      expect(challengeItem.title, "听力训练");
       expect(challengeItem.startTime, DateTimeUtil.none);
       expect(challengeItem.limitedTime.inMilliseconds, 259200000);
       expect(challengeItem.isFinished, false);
@@ -33,6 +34,10 @@ void main() {
           ChallengeGroup.fromJson(json.decode(challengeGroupSampleJson));
 
       expect(challengeGroup.id, 1);
+      expect(challengeGroup.title, "决战CET6");
+      expect(challengeGroup.isFinished, false);
+      expect(challengeGroup.startTime, DateTimeUtil.none);
+      expect(challengeGroup.limitedTime.inMilliseconds, 259200000);
       expect(challengeGroup.tags[0], "英语");
       expect(challengeGroup.color.value, 4282661449);
       expect(challengeGroup.challengeItems[0].id, 1);

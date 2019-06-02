@@ -103,87 +103,85 @@ void main() {
     }); //group "android"
 
     group("ios", () {
-      group('ios', () {
-        setUp(() {
-          mockChannel = MockMethodChannel();
-          plugin = FlutterLocalNotificationsPlugin.private(
-              mockChannel, FakePlatform(operatingSystem: 'ios'));
-        });
+      setUp(() {
+        mockChannel = MockMethodChannel();
+        plugin = FlutterLocalNotificationsPlugin.private(
+            mockChannel, FakePlatform(operatingSystem: 'ios'));
+      });
 
-        test('initialise plugin', () async {
-          const IOSInitializationSettings initializationSettingsIOS =
-              IOSInitializationSettings();
-          const InitializationSettings initializationSettings =
-              InitializationSettings(null, initializationSettingsIOS);
+      test('initialise plugin', () async {
+        const IOSInitializationSettings initializationSettingsIOS =
+            IOSInitializationSettings();
+        const InitializationSettings initializationSettings =
+            InitializationSettings(null, initializationSettingsIOS);
 
-          await plugin.initialize(initializationSettings);
+        await plugin.initialize(initializationSettings);
 
-          verify(
-            mockChannel.invokeMethod(
-                'initialize', initializationSettingsIOS.toMap()),
-          );
-        });
+        verify(
+          mockChannel.invokeMethod(
+              'initialize', initializationSettingsIOS.toMap()),
+        );
+      });
 
-        test('show notification', () async {
-          IOSNotificationDetails iOSPlatformChannelSpecifics =
-              IOSNotificationDetails();
-          NotificationDetails platformChannelSpecifics =
-              NotificationDetails(null, iOSPlatformChannelSpecifics);
+      test('show notification', () async {
+        IOSNotificationDetails iOSPlatformChannelSpecifics =
+            IOSNotificationDetails();
+        NotificationDetails platformChannelSpecifics =
+            NotificationDetails(null, iOSPlatformChannelSpecifics);
 
-          await plugin.show(
-            0,
-            title,
-            body,
-            platformChannelSpecifics,
-            payload: payload,
-          );
+        await plugin.show(
+          0,
+          title,
+          body,
+          platformChannelSpecifics,
+          payload: payload,
+        );
 
-          verify(
-            mockChannel.invokeMethod(
-              'show',
-              <String, dynamic>{
-                'id': id,
-                'title': title,
-                'body': body,
-                'platformSpecifics': iOSPlatformChannelSpecifics.toMap(),
-                'payload': payload
-              },
-            ),
-          );
-        });
+        verify(
+          mockChannel.invokeMethod(
+            'show',
+            <String, dynamic>{
+              'id': id,
+              'title': title,
+              'body': body,
+              'platformSpecifics': iOSPlatformChannelSpecifics.toMap(),
+              'payload': payload
+            },
+          ),
+        );
+      });
 
-        test('schedule notification', () async {
-          var scheduledNotificationDateTime =
-              DateTime.now().add(Duration(seconds: 5));
-          IOSNotificationDetails iOSPlatformChannelSpecifics =
-              IOSNotificationDetails();
-          NotificationDetails platformChannelSpecifics =
-              NotificationDetails(null, iOSPlatformChannelSpecifics);
+      test('schedule notification', () async {
+        var scheduledNotificationDateTime =
+            DateTime.now().add(Duration(seconds: 5));
+        IOSNotificationDetails iOSPlatformChannelSpecifics =
+            IOSNotificationDetails();
+        NotificationDetails platformChannelSpecifics =
+            NotificationDetails(null, iOSPlatformChannelSpecifics);
 
-          await plugin.schedule(
-            id,
-            title,
-            body,
-            scheduledNotificationDateTime,
-            platformChannelSpecifics,
-          );
+        await plugin.schedule(
+          id,
+          title,
+          body,
+          scheduledNotificationDateTime,
+          platformChannelSpecifics,
+        );
 
-          verify(mockChannel.invokeMethod('schedule', <String, dynamic>{
-            'id': id,
-            'title': title,
-            'body': body,
-            'millisecondsSinceEpoch':
-                scheduledNotificationDateTime.millisecondsSinceEpoch,
-            'platformSpecifics': iOSPlatformChannelSpecifics.toMap(),
-            'payload': ''
-          }));
-        });
+        verify(mockChannel.invokeMethod('schedule', <String, dynamic>{
+          'id': id,
+          'title': title,
+          'body': body,
+          'millisecondsSinceEpoch':
+              scheduledNotificationDateTime.millisecondsSinceEpoch,
+          'platformSpecifics': iOSPlatformChannelSpecifics.toMap(),
+          'payload': ''
+        }));
+      });
 
-        test('repeal notification', () async {
-          await plugin.cancel(id);
-          verify(mockChannel.invokeMethod('cancel', id));
-        });
-      }); //group "ios"
-    }); //group "Local notification by using the packages:flutter_local_notification"
-  });
+      test('repeal notification', () async {
+        await plugin.cancel(id);
+        verify(mockChannel.invokeMethod('cancel', id));
+      });
+    }); // group "ios"
+  }); // group "Local notification by using the packages:flutter_local_notification"
 }
