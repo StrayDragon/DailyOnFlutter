@@ -13,11 +13,13 @@ ChallengeItem _$ChallengeItemFromJson(Map<String, dynamic> json) {
       isFinished: BoolUtil.fromJson(json['isFinished'] as int),
       startTime: DateTimeUtil.fromJson(json['startTime'] as int),
       limitedTime: DurationUtil.fromJson(json['limitedTime'] as int),
-      endTime: DateTimeUtil.fromJson(json['endTime'] as int));
+      endTime: DateTimeUtil.fromJson(json['endTime'] as int))
+    ..groupId = json['group_id'] as int;
 }
 
 Map<String, dynamic> _$ChallengeItemToJson(ChallengeItem instance) =>
     <String, dynamic>{
+      'group_id': instance.groupId,
       '_id': instance.id,
       'title': instance.title,
       'isFinished': BoolUtil.toJson(instance.isFinished),
