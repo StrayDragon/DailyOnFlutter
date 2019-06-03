@@ -21,12 +21,12 @@ void main() {
 
     test("deserialization to json", () {
       Map expectedMap = json.decode(challengeItemSampleJson);
-      var challengeItem = ChallengeItem.fromJson(expectedMap);
-      Map actualMap = challengeItem.toJson();
+      Map actualMap = ChallengeItem.fromJson(expectedMap).toJson();
 
-      expectedMap.forEach((k, expected) {
-        expect(actualMap[k], expected);
-      });
+      expect(actualMap, expectedMap);
+      // expectedMap.forEach((k, expected) {
+      //   expect(actualMap[k], expected);
+      // });
     });
   });
 
@@ -42,14 +42,14 @@ void main() {
       expect(challengeGroup.limitedTime.inMilliseconds, 259200000);
       expect(challengeGroup.tags[0], "英语");
       expect(challengeGroup.color.value, 4282661449);
-      expect(challengeGroup.challengeItems[0].id, 1);
+      expect(challengeGroup.challengeItemIds[0], 1);
     });
 
     test("deserialization to json", () {
-      var challengeGroup =
-          ChallengeGroup.fromJson(json.decode(challengeGroupSampleJson));
+      Map expectedMap = json.decode(challengeGroupSampleJson);
+      Map actualMap = ChallengeGroup.fromJson(expectedMap).toJson();
 
-      print(challengeGroup.toJson());
+      expect(actualMap, expectedMap);
     });
   });
 }

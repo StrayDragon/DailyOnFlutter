@@ -28,7 +28,7 @@ class ChallengeGroup with EquatableMixinBase, EquatableMixin {
   @JsonKeys.duration
   Duration limitedTime;
 
-  List<ChallengeItem> challengeItems;
+  List<int> challengeItemIds;
 
   ChallengeGroup({
     this.id,
@@ -39,7 +39,7 @@ class ChallengeGroup with EquatableMixinBase, EquatableMixin {
     this.startTime,
     this.endTime,
     this.limitedTime,
-    this.challengeItems,
+    this.challengeItemIds,
   });
 
   factory ChallengeGroup.fromJson(Map<String, dynamic> jsonObj) =>
@@ -48,11 +48,11 @@ class ChallengeGroup with EquatableMixinBase, EquatableMixin {
   Map<String, dynamic> toJson() => _$ChallengeGroupToJson(this);
 
   String toDebugString() =>
-      'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished, color: $color, startTime: $startTime, endTime: $endTime, limitedTime: $limitedTime, challengeItems: $challengeItems}';
+      'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished, color: $color, startTime: $startTime, endTime: $endTime, limitedTime: $limitedTime,...}';
 
   @override
   String toString() =>
-      'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished, challengeItems: $challengeItems';
+      'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished,...';
 
   @override
   List get props =>

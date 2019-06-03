@@ -16,11 +16,8 @@ ChallengeGroup _$ChallengeGroupFromJson(Map<String, dynamic> json) {
       startTime: DateTimeUtil.fromJson(json['startTime'] as int),
       endTime: DateTimeUtil.fromJson(json['endTime'] as int),
       limitedTime: DurationUtil.fromJson(json['limitedTime'] as int),
-      challengeItems: (json['challengeItems'] as List)
-          ?.map((e) => e == null
-              ? null
-              : ChallengeItem.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+      challengeItemIds:
+          (json['challengeItemIds'] as List)?.map((e) => e as int)?.toList());
 }
 
 Map<String, dynamic> _$ChallengeGroupToJson(ChallengeGroup instance) =>
@@ -33,5 +30,5 @@ Map<String, dynamic> _$ChallengeGroupToJson(ChallengeGroup instance) =>
       'startTime': DateTimeUtil.toJson(instance.startTime),
       'endTime': DateTimeUtil.toJson(instance.endTime),
       'limitedTime': DurationUtil.toJson(instance.limitedTime),
-      'challengeItems': instance.challengeItems
+      'challengeItemIds': instance.challengeItemIds
     };
