@@ -34,6 +34,8 @@ dependencies:
 
   sembast: any
 
+  sqflite: any
+
   # Local Host Device plugin: https://github.com/MaikuB/flutter_local_notifications
   flutter_local_notifications: any
 
