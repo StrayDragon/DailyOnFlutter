@@ -3,18 +3,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'challenge_item.dart';
-
 part 'challenge_group.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ChallengeGroup with EquatableMixinBase, EquatableMixin {
   @JsonKeys.safetyIdName
   int id;
 
   String title;
 
-  List<String> tags;
+	List<int> tagIds;
 
   @JsonKeys.boolean
   bool isFinished;
@@ -33,7 +31,7 @@ class ChallengeGroup with EquatableMixinBase, EquatableMixin {
   ChallengeGroup({
     this.id,
     this.title,
-    this.tags,
+		this.tagIds,
     this.color,
     this.isFinished,
     this.startTime,
@@ -42,19 +40,19 @@ class ChallengeGroup with EquatableMixinBase, EquatableMixin {
     this.challengeItemIds,
   });
 
-  factory ChallengeGroup.fromJson(Map<String, dynamic> jsonObj) =>
+	factory ChallengeGroup.fromMap(Map<String, dynamic> jsonObj) =>
       _$ChallengeGroupFromJson(jsonObj);
 
-  Map<String, dynamic> toJson() => _$ChallengeGroupToJson(this);
+	Map<String, dynamic> toMap() => _$ChallengeGroupToJson(this);
 
   String toDebugString() =>
-      'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished, color: $color, startTime: $startTime, endTime: $endTime, limitedTime: $limitedTime,...}';
+			'ChallengeGroup{id: $id, title: $title, tags: $tagIds, isFinished: $isFinished, color: $color, startTime: $startTime, endTime: $endTime, limitedTime: $limitedTime,...}';
 
   @override
   String toString() =>
-      'ChallengeGroup{id: $id, title: $title, tags: $tags, isFinished: $isFinished,...';
+			'ChallengeGroup{id: $id, title: $title, tags: $tagIds, isFinished: $isFinished,...';
 
   @override
   List get props =>
-      [id, title, tags, isFinished, color, startTime, endTime, limitedTime];
+			[id, title, tagIds, isFinished, color, startTime, endTime, limitedTime];
 }

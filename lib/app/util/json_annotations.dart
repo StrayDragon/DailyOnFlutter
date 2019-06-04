@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'existing_type.dart';
+import 'existing_types.dart';
 
 /// package: `json_annotation`'s simple extension for some special cases
 class JsonKeys {

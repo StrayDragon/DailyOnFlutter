@@ -11,10 +11,10 @@ ChallengeItem _$ChallengeItemFromJson(Map<String, dynamic> json) {
       id: json['_id'] as int,
       title: json['title'] as String,
       groupId: json['group_id'] as int,
-      isFinished: BoolUtil.fromJson(json['isFinished'] as int),
-      startTime: DateTimeUtil.fromJson(json['startTime'] as int),
-      limitedTime: DurationUtil.fromJson(json['limitedTime'] as int),
-      endTime: DateTimeUtil.fromJson(json['endTime'] as int));
+			isFinished: BoolUtil.fromJson(json['is_finished'] as int),
+			startTime: DateTimeUtil.fromJson(json['start_time'] as int),
+			limitedTime: DurationUtil.fromJson(json['limited_time'] as int),
+			endTime: DateTimeUtil.fromJson(json['end_time'] as int));
 }
 
 Map<String, dynamic> _$ChallengeItemToJson(ChallengeItem instance) =>
@@ -22,8 +22,8 @@ Map<String, dynamic> _$ChallengeItemToJson(ChallengeItem instance) =>
       'group_id': instance.groupId,
       '_id': instance.id,
       'title': instance.title,
-      'isFinished': BoolUtil.toJson(instance.isFinished),
-      'startTime': DateTimeUtil.toJson(instance.startTime),
-      'endTime': DateTimeUtil.toJson(instance.endTime),
-      'limitedTime': DurationUtil.toJson(instance.limitedTime)
+			'is_finished': BoolUtil.toJson(instance.isFinished),
+			'start_time': DateTimeUtil.toJson(instance.startTime),
+			'end_time': DateTimeUtil.toJson(instance.endTime),
+			'limited_time': DurationUtil.toJson(instance.limitedTime)
     };

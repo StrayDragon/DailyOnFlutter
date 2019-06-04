@@ -10,25 +10,25 @@ ChallengeGroup _$ChallengeGroupFromJson(Map<String, dynamic> json) {
   return ChallengeGroup(
       id: json['_id'] as int,
       title: json['title'] as String,
-      tags: (json['tags'] as List)?.map((e) => e as String)?.toList(),
+			tagIds: (json['tag_ids'] as List)?.map((e) => e as int)?.toList(),
       color: ColorUtil.fromJson(json['color'] as int),
-      isFinished: BoolUtil.fromJson(json['isFinished'] as int),
-      startTime: DateTimeUtil.fromJson(json['startTime'] as int),
-      endTime: DateTimeUtil.fromJson(json['endTime'] as int),
-      limitedTime: DurationUtil.fromJson(json['limitedTime'] as int),
+			isFinished: BoolUtil.fromJson(json['is_finished'] as int),
+			startTime: DateTimeUtil.fromJson(json['start_time'] as int),
+			endTime: DateTimeUtil.fromJson(json['end_time'] as int),
+			limitedTime: DurationUtil.fromJson(json['limited_time'] as int),
       challengeItemIds:
-          (json['challengeItemIds'] as List)?.map((e) => e as int)?.toList());
+			(json['challenge_item_ids'] as List)?.map((e) => e as int)?.toList());
 }
 
 Map<String, dynamic> _$ChallengeGroupToJson(ChallengeGroup instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'title': instance.title,
-      'tags': instance.tags,
-      'isFinished': BoolUtil.toJson(instance.isFinished),
+			'tag_ids': instance.tagIds,
+			'is_finished': BoolUtil.toJson(instance.isFinished),
       'color': ColorUtil.toJson(instance.color),
-      'startTime': DateTimeUtil.toJson(instance.startTime),
-      'endTime': DateTimeUtil.toJson(instance.endTime),
-      'limitedTime': DurationUtil.toJson(instance.limitedTime),
-      'challengeItemIds': instance.challengeItemIds
+			'start_time': DateTimeUtil.toJson(instance.startTime),
+			'end_time': DateTimeUtil.toJson(instance.endTime),
+			'limited_time': DurationUtil.toJson(instance.limitedTime),
+			'challenge_item_ids': instance.challengeItemIds
     };
