@@ -31,8 +31,12 @@ void initializeDefaultLocalNotificationsPlugin({
   );
 }
 
-Future<void> pushCountdownNotification(Duration duration) {}
-Future<void> pushScheduledNotification(DateTime dateTime) {}
-Future<void> pushWeeklyNotification() {}
-Future<void> pushDailyNotification() {}
-Future<void> pushSimpleNotification() {}
+//Future<void> pushCountdownNotification(Duration duration) {}
+
+//Future<void> pushScheduledNotification(DateTime dateTime) {}
+
+//Future<void> pushWeeklyNotification() {}
+
+//Future<void> pushDailyNotification() {}
+
+//Future<void> pushSimpleNotification() {}
