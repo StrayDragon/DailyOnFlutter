@@ -6,17 +6,22 @@ class ChallengeItem {
   ChallengeItem();
 
   ChallengeItem.make({
+//    /*Generated*/ this.id,
+    this.groupId,
     @required this.title,
     @required this.isFinished,
+    this.createTime,
     this.startTime,
-    this.limitedTime,
     this.endTime,
-  });
+    this.limitedDuration,
+  }) {
+    this.createTime ??= DateTime.now();
+  }
 
   @PrimaryKey(auto: true)
   int id;
 
-  @BelongsTo(ChallengeGroupHandler)
+  @BelongsTo(ChallengeGroupHandler, refCol: '_id')
   int groupId;
 
   @Column()
@@ -26,11 +31,19 @@ class ChallengeItem {
   bool isFinished;
 
   @Column(isNullable: true)
-  int startTime;
+  DateTime createTime;
 
   @Column(isNullable: true)
-  int endTime;
+  DateTime startTime;
 
   @Column(isNullable: true)
-  int limitedTime;
+  DateTime endTime;
+
+  @Column(isNullable: true)
+  int limitedDuration;
+
+  @override
+  String toString() {
+    return 'ChallengeItem{id: $id, title: $title, isFinished: $isFinished}';
+  }
 }

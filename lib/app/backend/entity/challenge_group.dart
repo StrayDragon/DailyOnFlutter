@@ -1,5 +1,6 @@
 import 'package:daily/app/backend/entity/entities.dart';
 import 'package:daily/app/backend/handler/handlers.dart';
+import 'package:flutter/material.dart' show Colors;
 import 'package:jaguar_orm/jaguar_orm.dart';
 import 'package:meta/meta.dart';
 
@@ -7,16 +8,22 @@ class ChallengeGroup {
   ChallengeGroup();
 
   ChallengeGroup.make({
+//    /*Generated*/ this.id,
     @required this.title,
     @required this.isFinished,
     this.colorValue,
+		this.createTime,
     this.startTime,
     this.endTime,
-    this.limitedTime,
+		this.limitedDuration,
     this.challengeItems,
-  });
+		this.tags,
+	}) {
+		this.colorValue ??= Colors.lightBlue.value;
+		this.createTime ??= DateTime.now();
+	}
 
-  @PrimaryKey(auto: true)
+	@PrimaryKey(auto: true, name: '_id')
   int id;
 
   @Column()
@@ -28,6 +35,9 @@ class ChallengeGroup {
   @Column(isNullable: true)
   int colorValue;
 
+	@Column(isNullable: true)
+	DateTime createTime;
+
   @Column(isNullable: true)
   DateTime startTime;
 
@@ -35,7 +45,7 @@ class ChallengeGroup {
   DateTime endTime;
 
   @Column(isNullable: true)
-  int limitedTime;
+	int limitedDuration;
 
   @HasMany(ChallengeItemHandler)
   List<ChallengeItem> challengeItems;
@@ -45,6 +55,6 @@ class ChallengeGroup {
 
   @override
   String toString() {
-    return 'ChallengeGroup{id: $id, title: $title, isFinished: $isFinished, colorValue: $colorValue, startTime: $startTime, endTime: $endTime, limitedTime: $limitedTime, challengeItems: $challengeItems}';
+		return 'ChallengeGroup{id: $id, title: $title, isFinished: $isFinished, createTime: $createTime, challengeItems: $challengeItems, tags: $tags}';
   }
 }

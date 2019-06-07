@@ -11,13 +11,11 @@ abstract class _ChallengeTagHandler implements Bean<ChallengeTag> {
   final groupId = IntField('group_id');
   final name = StrField('name');
   Map<String, Field> _fields;
-
   Map<String, Field> get fields => _fields ??= {
         id.name: id,
         groupId.name: groupId,
         name.name: name,
       };
-
   ChallengeTag fromMap(Map map) {
     ChallengeTag model = ChallengeTag();
     model.id = adapter.parseValue(map['id']);
@@ -43,8 +41,8 @@ abstract class _ChallengeTagHandler implements Bean<ChallengeTag> {
       }
       if (only.contains(groupId.name)) ret.add(groupId.set(model.groupId));
       if (only.contains(name.name)) ret.add(name.set(model.name));
-    } else
-    /* if (onlyNonNull) */ {
+		} else
+			/* if (onlyNonNull) */ {
       if (model.id != null) {
         ret.add(id.set(model.id));
       }
@@ -64,7 +62,7 @@ abstract class _ChallengeTagHandler implements Bean<ChallengeTag> {
     st.addInt(id.name, primary: true, autoIncrement: true, isNullable: false);
     st.addInt(groupId.name,
         foreignTable: challengeGroupBean.tableName,
-        foreignCol: 'id',
+				foreignCol: '_id',
         isNullable: false);
     st.addStr(name.name, isNullable: false);
     return adapter.createTable(st);
@@ -79,7 +77,6 @@ abstract class _ChallengeTagHandler implements Bean<ChallengeTag> {
         .id(id.name);
     var retId = await adapter.insert(insert);
     if (cascade) {
-      // ignore: unused_local_variable
       ChallengeTag newModel;
     }
     return retId;
@@ -105,7 +102,6 @@ abstract class _ChallengeTagHandler implements Bean<ChallengeTag> {
         .id(id.name);
     var retId = await adapter.upsert(upsert);
     if (cascade) {
-      // ignore: unused_local_variable
       ChallengeTag newModel;
     }
     return retId;

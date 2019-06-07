@@ -11,30 +11,31 @@ abstract class _ChallengeItemHandler implements Bean<ChallengeItem> {
   final groupId = IntField('group_id');
   final title = StrField('title');
   final isFinished = BoolField('is_finished');
-  final startTime = IntField('start_time');
-  final endTime = IntField('end_time');
-  final limitedTime = IntField('limited_time');
+  final createTime = DateTimeField('create_time');
+  final startTime = DateTimeField('start_time');
+  final endTime = DateTimeField('end_time');
+  final limitedDuration = IntField('limited_duration');
   Map<String, Field> _fields;
-
   Map<String, Field> get fields => _fields ??= {
         id.name: id,
         groupId.name: groupId,
         title.name: title,
         isFinished.name: isFinished,
+    createTime.name: createTime,
         startTime.name: startTime,
         endTime.name: endTime,
-        limitedTime.name: limitedTime,
+    limitedDuration.name: limitedDuration,
       };
-
   ChallengeItem fromMap(Map map) {
     ChallengeItem model = ChallengeItem();
     model.id = adapter.parseValue(map['id']);
     model.groupId = adapter.parseValue(map['group_id']);
     model.title = adapter.parseValue(map['title']);
     model.isFinished = adapter.parseValue(map['is_finished']);
+    model.createTime = adapter.parseValue(map['create_time']);
     model.startTime = adapter.parseValue(map['start_time']);
     model.endTime = adapter.parseValue(map['end_time']);
-    model.limitedTime = adapter.parseValue(map['limited_time']);
+    model.limitedDuration = adapter.parseValue(map['limited_duration']);
 
     return model;
   }
@@ -50,9 +51,10 @@ abstract class _ChallengeItemHandler implements Bean<ChallengeItem> {
       ret.add(groupId.set(model.groupId));
       ret.add(title.set(model.title));
       ret.add(isFinished.set(model.isFinished));
+      ret.add(createTime.set(model.createTime));
       ret.add(startTime.set(model.startTime));
       ret.add(endTime.set(model.endTime));
-      ret.add(limitedTime.set(model.limitedTime));
+      ret.add(limitedDuration.set(model.limitedDuration));
     } else if (only != null) {
       if (model.id != null) {
         if (only.contains(id.name)) ret.add(id.set(model.id));
@@ -61,13 +63,15 @@ abstract class _ChallengeItemHandler implements Bean<ChallengeItem> {
       if (only.contains(title.name)) ret.add(title.set(model.title));
       if (only.contains(isFinished.name))
         ret.add(isFinished.set(model.isFinished));
+      if (only.contains(createTime.name))
+        ret.add(createTime.set(model.createTime));
       if (only.contains(startTime.name))
         ret.add(startTime.set(model.startTime));
       if (only.contains(endTime.name)) ret.add(endTime.set(model.endTime));
-      if (only.contains(limitedTime.name))
-        ret.add(limitedTime.set(model.limitedTime));
+      if (only.contains(limitedDuration.name))
+        ret.add(limitedDuration.set(model.limitedDuration));
     } else
-    /* if (onlyNonNull) */ {
+      /* if (onlyNonNull) */ {
       if (model.id != null) {
         ret.add(id.set(model.id));
       }
@@ -80,14 +84,17 @@ abstract class _ChallengeItemHandler implements Bean<ChallengeItem> {
       if (model.isFinished != null) {
         ret.add(isFinished.set(model.isFinished));
       }
+      if (model.createTime != null) {
+        ret.add(createTime.set(model.createTime));
+      }
       if (model.startTime != null) {
         ret.add(startTime.set(model.startTime));
       }
       if (model.endTime != null) {
         ret.add(endTime.set(model.endTime));
       }
-      if (model.limitedTime != null) {
-        ret.add(limitedTime.set(model.limitedTime));
+      if (model.limitedDuration != null) {
+        ret.add(limitedDuration.set(model.limitedDuration));
       }
     }
 
@@ -99,13 +106,14 @@ abstract class _ChallengeItemHandler implements Bean<ChallengeItem> {
     st.addInt(id.name, primary: true, autoIncrement: true, isNullable: false);
     st.addInt(groupId.name,
         foreignTable: challengeGroupBean.tableName,
-        foreignCol: 'id',
+        foreignCol: '_id',
         isNullable: false);
     st.addStr(title.name, isNullable: false);
     st.addBool(isFinished.name, isNullable: false);
-    st.addInt(startTime.name, isNullable: true);
-    st.addInt(endTime.name, isNullable: true);
-    st.addInt(limitedTime.name, isNullable: true);
+    st.addDateTime(createTime.name, isNullable: true);
+    st.addDateTime(startTime.name, isNullable: true);
+    st.addDateTime(endTime.name, isNullable: true);
+    st.addInt(limitedDuration.name, isNullable: true);
     return adapter.createTable(st);
   }
 
@@ -118,7 +126,6 @@ abstract class _ChallengeItemHandler implements Bean<ChallengeItem> {
         .id(id.name);
     var retId = await adapter.insert(insert);
     if (cascade) {
-      // ignore: unused_local_variable
       ChallengeItem newModel;
     }
     return retId;
@@ -144,7 +151,6 @@ abstract class _ChallengeItemHandler implements Bean<ChallengeItem> {
         .id(id.name);
     var retId = await adapter.upsert(upsert);
     if (cascade) {
-      // ignore: unused_local_variable
       ChallengeItem newModel;
     }
     return retId;
