@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 import 'app/backend/entity/entities.dart';
 import 'app/backend/handler/handlers.dart';
 import 'app/util/databases.dart';
-import 'app/view/pages.dart' show DailyChallengesPage;
+import 'app/view/daily_challenge/page/pages.dart' show DailyChallengesPage;
 
 Future rawSqliteTest() async {
   Database db = await getAssetsDatabase("app_dev.db");
