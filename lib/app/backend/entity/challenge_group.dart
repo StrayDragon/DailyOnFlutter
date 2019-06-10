@@ -12,18 +12,18 @@ class ChallengeGroup {
     @required this.title,
     @required this.isFinished,
     this.colorValue,
-		this.createTime,
+    this.createTime,
     this.startTime,
     this.endTime,
-		this.limitedDuration,
+    this.limitedDuration,
     this.challengeItems,
-		this.tags,
-	}) {
-		this.colorValue ??= Colors.lightBlue.value;
-		this.createTime ??= DateTime.now();
-	}
+    this.tags,
+  }) {
+    this.colorValue ??= Colors.lightBlue.value;
+    this.createTime ??= DateTime.now();
+  }
 
-	@PrimaryKey(auto: true, name: '_id')
+  @PrimaryKey(auto: true, name: '_id')
   int id;
 
   @Column()
@@ -35,8 +35,8 @@ class ChallengeGroup {
   @Column(isNullable: true)
   int colorValue;
 
-	@Column(isNullable: true)
-	DateTime createTime;
+  @Column(isNullable: true)
+  DateTime createTime;
 
   @Column(isNullable: true)
   DateTime startTime;
@@ -45,7 +45,7 @@ class ChallengeGroup {
   DateTime endTime;
 
   @Column(isNullable: true)
-	int limitedDuration;
+  int limitedDuration;
 
   @HasMany(ChallengeItemHandler)
   List<ChallengeItem> challengeItems;
@@ -55,6 +55,6 @@ class ChallengeGroup {
 
   @override
   String toString() {
-		return 'ChallengeGroup{id: $id, title: $title, isFinished: $isFinished, createTime: $createTime, challengeItems: $challengeItems, tags: $tags}';
+    return 'ChallengeGroup{id: $id, title: $title, isFinished: $isFinished, createTime: $createTime, challengeItems: $challengeItems, tags: $tags}';
   }
 }

@@ -1,12 +1,12 @@
+import 'package:daily/app/backend/entity/entities.dart';
+import 'package:daily/app/backend/handler/handlers.dart';
+import 'package:daily/app/util/databases.dart';
+import 'package:daily/app/view/challenge/page/pages.dart'
+    show DailyChallengesPage;
 import 'package:flutter/material.dart';
 import 'package:jaguar_query_sqflite/jaguar_query_sqflite.dart';
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart';
-
-import 'app/backend/entity/entities.dart';
-import 'app/backend/handler/handlers.dart';
-import 'app/util/databases.dart';
-import 'app/view/daily_challenge/page/pages.dart' show DailyChallengesPage;
 
 Future rawSqliteTest() async {
   Database db = await getAssetsDatabase("app_dev.db");

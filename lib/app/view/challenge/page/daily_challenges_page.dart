@@ -1,11 +1,10 @@
-import 'package:daily/app/view/daily_challenge/component/components.dart'
+import 'package:daily/app/view/challenge/component/components.dart'
     show AddChallengeDialog, ChallengesTimeline;
 import 'package:daily/app/view/widget/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rubber/rubber.dart';
 import 'package:timeline_list/timeline.dart';
-
 class DailyChallengesPage extends StatefulWidget {
   DailyChallengesPage({Key key}) : super(key: key);
 
