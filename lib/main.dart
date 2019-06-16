@@ -13,7 +13,7 @@ Future rawSqliteTest() async {
 
   // Attempt to test directly
   List<Map<String, dynamic>> list =
-  await db.rawQuery("SELECT * FROM ChallengeTags");
+	await db.rawQuery("SELECT * FROM ChallengeTags");
 
   print(list);
 }
@@ -102,15 +102,15 @@ Future ormSqliteTest() async {
   }
 }
 
-void main() async {
+Future SqfliteInitialize() async {
   await Sqflite.devSetDebugModeOn(true);
 
-//  await rawSqliteTest();
+	//  await rawSqliteTest();
   await ormSqliteTest();
-  // ---
+}
+
+void main() async {
   runApp(MyApp());
-  // ---
-//  await db.close();
 }
 
 class MyApp extends StatelessWidget {

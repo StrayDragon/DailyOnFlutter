@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
-class TestingWidgetHomePage extends StatelessWidget {
+void main() => runApp(UiApp());
+
+class UiApp extends StatelessWidget {
   static const String ROUTE_NAME = '/testing-my-widget';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(ROUTE_NAME.substring(1)),
-        centerTitle: true,
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(ROUTE_NAME.substring(1)),
+          centerTitle: true,
+        ),
+        body: PageViewPage(),
       ),
-      body: PageViewPage(),
     );
   }
 }

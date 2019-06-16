@@ -16,8 +16,8 @@ class _AddChallengeDialogState extends State<AddChallengeDialog> {
       child: SimpleDialog(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-							Radius.circular(32.0),
-						)),
+              Radius.circular(32.0),
+            )),
         children: <Widget>[
           Hero(
             tag: AddChallengeDialog.heroTag,
@@ -48,13 +48,23 @@ class _AddChallengeDialogState extends State<AddChallengeDialog> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: RaisedButton(
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        debugPrint("OK");
-                      }
-                    },
-                    child: Text('提交'),
+                  child: Row(
+                    children: <Widget>[
+                      RaisedButton(
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            debugPrint("OK");
+                          }
+                        },
+                        child: Text('提交'),
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('取消'),
+                      ),
+                    ],
                   ),
                 ),
               ],
