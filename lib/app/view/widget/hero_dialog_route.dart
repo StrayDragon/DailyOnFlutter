@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 // See: https://stackoverflow.com/a/44404763/9316144
 class HeroDialogRoute<T> extends PageRoute<T> {
-  HeroDialogRoute({this.builder}) : super();
+  bool _barrierDismissible;
+
+  HeroDialogRoute({this.builder, bool barrierDismissible = true}) : super() {
+    _barrierDismissible = barrierDismissible;
+  }
 
   final WidgetBuilder builder;
 
@@ -13,7 +17,7 @@ class HeroDialogRoute<T> extends PageRoute<T> {
   bool get opaque => false;
 
   @override
-  bool get barrierDismissible => true;
+  bool get barrierDismissible => _barrierDismissible;
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 300);

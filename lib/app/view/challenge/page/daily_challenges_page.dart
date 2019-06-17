@@ -1,5 +1,6 @@
 import 'package:daily/app/view/challenge/component/components.dart'
     show AddChallengeDialog, ChallengesTimeline;
+import 'package:daily/app/view/widget/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hidden_drawer_menu/hidden_drawer/hidden_drawer_menu.dart';
@@ -28,8 +29,6 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
       slidePercent: 70.0,
       contentCornerRadius: 40.0,
       backgroundColorAppBar: Colors.blueAccent,
-      //    elevationAppBar: 4.0,
-      //    enableShadowitemsMenu: true,
       //    backgroundMenu: DecorationImage(image: ExactAssetImage('assets/bg_news.jpg'),fit: BoxFit.cover),
     );
   }
@@ -89,17 +88,13 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
                 elevation: 12.0,
                 heroTag: AddChallengeDialog.heroTag,
                 onPressed: () {
-//            Navigator.of(context).push(
-//              HeroDialogRoute(
-//                builder: (BuildContext context) {
-//                  return AddChallengeDialog();
-//                },
-//              ),
-//            );
-                  showDialog(
-                    context: context,
-                    builder: (context) => AddChallengeDialog(),
-                    barrierDismissible: false,
+                  Navigator.of(context).push(
+                    HeroDialogRoute(
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return AddChallengeDialog();
+                      },
+                    ),
                   );
                 },
               ),
@@ -136,6 +131,13 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
                 ),
               ),
               headerHeight: 100.0,
+              lowerLayer: Container(
+                constraints: BoxConstraints(),
+                decoration: BoxDecoration(
+                  color: Colors.cyan[100],
+                ),
+                child: StackingCards(),
+              ),
               upperLayer: Container(
                 width: double.maxFinite,
                 height: double.maxFinite,
@@ -172,13 +174,6 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
 //              crossAxisSpacing: 4.0,
                   ),
                 ),
-              ),
-              lowerLayer: Container(
-                constraints: BoxConstraints(),
-                decoration: BoxDecoration(
-                  color: Colors.cyan[100],
-                ),
-//          child: ChallengesTimeline(),
               ),
               animationController: _rubberController,
             ),
