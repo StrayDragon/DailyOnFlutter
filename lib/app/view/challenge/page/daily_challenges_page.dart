@@ -1,6 +1,7 @@
-import 'package:daily/app/view/challenge/component/components.dart'
+import 'package:daily/app/view/challenge/component/challenge_cards.dart';
+import 'package:daily/app/view/challenge/components.dart'
     show AddChallengeDialog, ChallengesTimeline;
-import 'package:daily/app/view/widget/widgets.dart';
+import 'package:daily/app/view/common/functionals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hidden_drawer_menu/hidden_drawer/hidden_drawer_menu.dart';
@@ -51,7 +52,7 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
           name: "挑战",
           colorLineSelected: Colors.blueAccent,
           baseStyle:
-          TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 25.0),
+					TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 25.0),
           selectedStyle: TextStyle(color: Colors.blue),
         ),
         Container(
@@ -136,7 +137,7 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
                 decoration: BoxDecoration(
                   color: Colors.cyan[100],
                 ),
-                child: StackingCards(),
+								child: ChallengeCards(),
               ),
               upperLayer: Container(
                 width: double.maxFinite,
@@ -146,32 +147,34 @@ class _DailyChallengesPageState extends State<DailyChallengesPage>
                 ),
                 child: Container(
                   height: 200,
-                  child: StaggeredGridView.countBuilder(
-                    scrollDirection: Axis.horizontal,
-                    addAutomaticKeepAlives: false,
-                    addRepaintBoundaries: false,
-                    shrinkWrap: true,
-                    padding:
-                    EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-                    crossAxisCount: 4,
-                    itemCount: 8,
-                    itemBuilder: (BuildContext context, int index) =>
-                        Container(
-                          color: colorList[index],
-                          child: Center(
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Text('$index'),
-                            ),
-                          ),
-                        ),
-                    staggeredTileBuilder: (int index) =>
-                        StaggeredTile.count(
-                          2,
-                          index.isEven ? 2 : 1,
-                        ),
+									child: Center(
+										child: StaggeredGridView.countBuilder(
+											scrollDirection: Axis.horizontal,
+											addAutomaticKeepAlives: false,
+											addRepaintBoundaries: false,
+											shrinkWrap: true,
+											padding: EdgeInsets.symmetric(
+													vertical: 12.0, horizontal: 12.0),
+											crossAxisCount: 4,
+											itemCount: 8,
+											itemBuilder: (BuildContext context, int index) =>
+													Container(
+														color: colorList[index],
+														child: Center(
+															child: CircleAvatar(
+																backgroundColor: Colors.white,
+																child: Text('$index'),
+															),
+														),
+													),
+											staggeredTileBuilder: (int index) =>
+													StaggeredTile.count(
+														2,
+														index.isEven ? 2 : 1,
+													),
 //              mainAxisSpacing: 4.0,
 //              crossAxisSpacing: 4.0,
+										),
                   ),
                 ),
               ),
