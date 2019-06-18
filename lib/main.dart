@@ -1,7 +1,7 @@
 import 'package:daily/app/backend/entity/entities.dart';
 import 'package:daily/app/backend/handler/handlers.dart';
 import 'package:daily/app/util/databases.dart';
-import 'package:daily/app/view/challenge/page/pages.dart'
+import 'package:daily/app/view/challenge/pages.dart'
     show DailyChallengesPage;
 import 'package:flutter/material.dart';
 import 'package:jaguar_query_sqflite/jaguar_query_sqflite.dart';
