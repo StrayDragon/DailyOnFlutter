@@ -16,4 +16,9 @@ class ChallengeItemHandler extends Bean<ChallengeItem>
       _challengeGroupHandler ??= ChallengeGroupHandler(adapter);
 
   ChallengeItemHandler(Adapter adapter) : super(adapter);
+
+	Future<int> updateFinishState(int id, bool value) async {
+		Update st = updater.where(this.id.eq(id)).set(this.isFinished, value);
+		return adapter.update(st);
+	}
 }

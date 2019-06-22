@@ -25,4 +25,9 @@ class ChallengeGroupHandler extends Bean<ChallengeGroup>
   @override
   ChallengeTagHandler get challengeTagBean =>
       challengeTagHandler ??= ChallengeTagHandler(adapter);
+
+	Future<int> updateFinishState(int id, bool value) async {
+		Update st = updater.where(this.id.eq(id)).set(this.isFinished, value);
+		return adapter.update(st);
+	}
 }

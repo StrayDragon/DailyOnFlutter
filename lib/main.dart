@@ -1,8 +1,7 @@
 import 'package:daily/app/backend/entity/entities.dart';
 import 'package:daily/app/backend/handler/handlers.dart';
 import 'package:daily/app/util/databases.dart';
-import 'package:daily/app/view/challenge/pages.dart'
-    show DailyChallengesPage;
+import 'package:daily/app/view/daily_menu_page.dart';
 import 'package:flutter/material.dart';
 import 'package:jaguar_query_sqflite/jaguar_query_sqflite.dart';
 import 'package:path/path.dart' as path;
@@ -13,7 +12,7 @@ Future rawSqliteTest() async {
 
   // Attempt to test directly
   List<Map<String, dynamic>> list =
-	await db.rawQuery("SELECT * FROM ChallengeTags");
+  await db.rawQuery("SELECT * FROM ChallengeTags");
 
   print(list);
 }
@@ -105,7 +104,7 @@ Future ormSqliteTest() async {
 Future SqfliteInitialize() async {
   await Sqflite.devSetDebugModeOn(true);
 
-	//  await rawSqliteTest();
+  //  await rawSqliteTest();
   await ormSqliteTest();
 }
 
@@ -121,7 +120,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Daily(测试版)',
       theme: ThemeData.light(),
-      home: DailyChallengesPage(),
+      home: DailyMenuPage(),
     );
   }
 }
