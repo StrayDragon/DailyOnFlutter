@@ -1,53 +1,34 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(UiApp());
+import 'app/view/challenge/components.dart';
+import 'ui_main/routes.dart';
 
-class UiApp extends StatelessWidget {
-  static const String ROUTE_NAME = '/testing-my-widget';
+void main() {
+  routes.addAll(
+    {
+      '/test-ui': (context) => Scaffold(
+            appBar: AppBar(
+              title: Text("ChallengeCard"),
+            ),
+            body: Container(
+              child: ChallengeCard(),
+            ),
+          ),
+    },
+  );
+  runApp(MyApp());
+}
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(ROUTE_NAME.substring(1)),
-          centerTitle: true,
-        ),
-        body: PageViewPage(),
+      title: 'StaggeredGridView Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
-    );
-  }
-}
-
-class PageViewPage extends StatelessWidget {
-  final List<String> _pageName = <String>["第一页", '第二页', '第三页'];
-
-  List<Widget> _makePages() {
-    return List.generate(
-      _pageName.length,
-      (index) => Container(
-            color: Colors.blue[300],
-            alignment: Alignment(0.0, 0.0),
-            child: GestureDetector(
-              onTap: () {
-                debugPrint("按了  ${_pageName[index]}");
-              },
-              child: Text(
-                "${_pageName[index]}",
-                style: TextStyle(
-                  fontSize: 32.0,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return PageView(
-      children: _makePages(),
+      routes: routes,
+      initialRoute: '/test-ui',
     );
   }
 }
